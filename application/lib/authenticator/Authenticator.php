@@ -70,7 +70,7 @@ class Authenticator
         // 账户信息，包含所拥有的权限列表
         $userInfo = $this->getUserInfo();
         //账户属于超级管理员，直接通过
-        if ($userInfo['admin'] === true) return true;
+        if ($userInfo['role_id'] === 1) return true;
         $actionPermissionName = $this->actionPermission();
 
         return AuthenticatorExecutorFactory::getInstance($actionPermissionLevel)->handle($userInfo, $actionPermissionName);

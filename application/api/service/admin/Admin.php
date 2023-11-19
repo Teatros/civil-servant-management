@@ -90,7 +90,7 @@ class Admin
     {
         $user = LinUserModel::get($uid);
         if (!$user) {
-            throw new NotFoundException();
+            throw new NotFoundExczeption();
         }
 
         LinUserIdentityModel::resetPassword($user, $newPassword);

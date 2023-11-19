@@ -142,7 +142,7 @@ class LoginToken
 
     public function getCurrentUserName()
     {
-        return $this->getExtendVal('identifier');
+        return $this->getExtendVal('username');
     }
 
     public function getTokenFromHeaders(): string

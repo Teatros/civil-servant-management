@@ -86,6 +86,114 @@ Route::group('', function () {
         });
 
     });
+    Route::group('responsibility_fulfillment', function () {
+        Route::post('', 'api/cms.ResponsibilityFulfillment/create');
+        Route::put('', 'api/cms.ResponsibilityFulfillment/update');
+        Route::delete('', 'api/cms.ResponsibilityFulfillment/delete');
+        Route::post('list', 'api/cms.ResponsibilityFulfillment/list');
+    });
+    Route::group('sys_user', function () {
+        Route::post('login', 'api/user.SysUser/login');
+        Route::post('logout', 'api/user.SysUser/logout');
+        Route::get('getUserInfo', 'api/user.SysUser/getUserInfo');
+    });
+    Route::group('user', function () {
+        Route::get('', 'api/user.User/getUser');
+        Route::post('search', 'api/user.User/listUsers');
+        Route::post('', 'api/user.User/addUser');
+        Route::put('', 'api/user.User/updateUser');
+        Route::delete('', 'api/user.User/deleteUser');
+        Route::get('by_dept', 'api/user.User/getUserByDeptId');
+    });
+    Route::group('permission', function () {
+        Route::get('getRouters', 'api/permission.Menu/getRouters');
+    });
+    Route::group('system', function () {
+        Route::group('user', function () {
+            Route::post('list', 'api/user.SysUser/listUsers');
+            Route::post('', 'api/user.SysUser/addUser');
+            Route::put('', 'api/user.SysUser/updateUser');
+            Route::delete('', 'api/user.SysUser/deleteUser');
+            Route::put('changeStatus', 'api/user.SysUser/changeStatus');
+        });
+
+        Route::group('role', function () {
+            Route::get('', 'api/permission.Role/getRole');
+            Route::get('list', 'api/permission.Role/listAllRoles');
+            Route::post('search', 'api/permission.Role/listRoles');
+            Route::post('', 'api/permission.Role/addRole');
+            Route::put('', 'api/permission.Role/updateRole');
+            Route::delete('', 'api/permission.Role/deleteRole');
+        });
+
+        Route::group('dept', function () {
+            Route::post('tree', 'api/permission.Dept/listDeptTree');
+            Route::get('list', 'api/permission.Dept/getDeptList');
+            Route::post('list/exclude', 'api/permission.Dept/listDeptExclude');
+            Route::get('', 'api/permission.Dept/getDept');
+            Route::post('', 'api/permission.Dept/addDept');
+            Route::put('', 'api/permission.Dept/updateDept');
+            Route::delete('', 'api/permission.Dept/deleteDept');
+        });
+
+        Route::group('menu', function () {
+            Route::get('list', 'api/permission.Menu/getMenus');
+            Route::get('', 'api/permission.Menu/getMenu');
+            Route::post('', 'api/permission.Menu/addMenu');
+            Route::put('', 'api/permission.Menu/updateMenu');
+            Route::delete('', 'api/permission.Menu/deleteMenu');
+            Route::get('treeSelect', 'api/permission.Menu/treeSelect');
+            Route::get('roleMenuTreeSelect', 'api/permission.Menu/roleMenuTreeSelect');
+        });
+    });
+    Route::group('document', function () {
+        Route::group('dishonesty', function () {
+            Route::post('search', 'api/honestDocument.Dishonesty/searchData');
+            Route::post('', 'api/honestDocument.Dishonesty/addData');
+            Route::put('', 'api/honestDocument.Dishonesty/updateData');
+            Route::delete('', 'api/honestDocument.Dishonesty/deleteData');
+        });
+        Route::group('annual_evaluation', function () {
+            Route::post('search', 'api/honestDocument.AnnualEvaluation/searchData');
+            Route::post('', 'api/honestDocument.AnnualEvaluation/addData');
+            Route::put('', 'api/honestDocument.AnnualEvaluation/updateData');
+            Route::delete('', 'api/honestDocument.AnnualEvaluation/deleteData');
+        });
+        Route::group('reward_punishment', function () {
+            Route::post('search', 'api/honestDocument.RewardPunishment/searchData');
+            Route::post('', 'api/honestDocument.RewardPunishment/addData');
+            Route::put('', 'api/honestDocument.RewardPunishment/updateData');
+            Route::delete('', 'api/honestDocument.RewardPunishment/deleteData');
+        });
+        Route::group('social_credit', function () {
+            Route::post('search', 'api/honestDocument.SocialCredit/searchData');
+            Route::post('', 'api/honestDocument.SocialCredit/addData');
+            Route::put('', 'api/honestDocument.SocialCredit/updateData');
+            Route::delete('', 'api/honestDocument.SocialCredit/deleteData');
+        });
+    });
+    Route::group('inspection', function () {
+        Route::post('search', 'api/record.InspectionRecord/searchData');
+        Route::post('', 'api/record.InspectionRecord/addData');
+        Route::put('', 'api/record.InspectionRecord/updateData');
+        Route::delete('', 'api/record.InspectionRecord/deleteData');
+    });
+    Route::group('loan', function () {
+        Route::post('search', 'api/record.LoanRecord/searchData');
+        Route::post('', 'api/record.LoanRecord/addData');
+        Route::put('', 'api/record.LoanRecord/updateData');
+        Route::delete('', 'api/record.LoanRecord/deleteData');
+    });
+    Route::group('file', function () {
+        Route::get('export', 'api/file.FileExport/exportUserInfo');
+        Route::post('import', 'api/file.FileImport/importUserInfo');
+
+    });
+    Route::group('statistic', function () {
+        Route::get('document_upload_statistic', 'api/statistic.Statistic/getDocumentUploadStatistics');
+        Route::get('daily_document_upload_statistic', 'api/statistic.Statistic/getDailyDocumentUploadStatistics');
+        Route::post('login_records', 'api/statistic.Statistic/listLoginRecord');
+    });
 })->middleware(['Authentication', 'ReflexValidate'])->allowCrossDomain(true, $header = [
     'Access-Control-Allow-Credentials' => 'true',
     'Access-Control-Allow-Methods' => 'GET, POST, PATCH, PUT, DELETE',

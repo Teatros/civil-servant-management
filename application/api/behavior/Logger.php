@@ -9,7 +9,7 @@
 namespace app\api\behavior;
 
 
-use app\api\model\admin\LinLog;
+use app\api\model\AuditLog;
 use app\api\service\token\LoginToken;
 use app\lib\exception\OperationException;
 use think\facade\Request;
@@ -47,10 +47,11 @@ class Logger
             'status_code' => Response::getCode(),
             'method' => Request::method(),
             'path' => '/' . Request::path(),
-            'permission' => null
+            'permission' => null,
+            'create_date_time' => date('Y-m-d H:m:s'),
+            'update_date_time' => date('Y-m-d H:m:s')
         ];
 
-        LinLog::create($data);
-
+        AuditLog::create($data);
     }
 }

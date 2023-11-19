@@ -22,7 +22,10 @@
     "lin-cms-tp5/base-core": "dev-master",
     "lin-cms-tp/validate-core": "dev-master",
     "lin-cms-tp/utils-core": "dev-master",
-    "qinchen/web-utils": ">0.0.1"
+    "qinchen/web-utils": ">0.0.1",
+    "phpoffice/phpword": "^1.1",
+    "dompdf/dompdf": "^2.0",
+    "phpoffice/phpexcel": "^1.8"
   },
   "autoload": {
     "psr-4": {
@@ -33,7 +36,10 @@
     "think-path": "thinkphp"
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "topthink/think-installer": true
+    }
   },
   "repositories": {
   }
